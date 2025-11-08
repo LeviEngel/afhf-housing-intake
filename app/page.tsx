@@ -19,8 +19,10 @@ import {
 import Demographics from './sections/demographics'
 import Children from './sections/children'
 import CriminalHistory from './sections/criminal_history'
+import SubstanceUseHistory from './sections/substance_use_history'
 import HousingHistory from './sections/housing_history'
 import Vehicles from './sections/vehicles'
+import Financial from "./sections/financial";
 export default function Home() {
 
   const icon = null
@@ -47,6 +49,18 @@ export default function Home() {
       id: "criminalHistory",
       component: <CriminalHistory />
     },
+    {
+      title: "Substance Use History",
+      id: "substanceUseHistory",
+      component: <SubstanceUseHistory />
+    },
+    {
+      title: "Financial",
+      id: "financial",
+      component: <Financial />
+    },
+
+    
     {
       title: "Housing History",
       id: "housingHistory",
