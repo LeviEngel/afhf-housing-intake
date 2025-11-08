@@ -218,13 +218,6 @@ export default function Vehicles() {
           >
             Reset
           </Button>
-          <Button 
-            type="submit" 
-            form="form-vehicles"
-            className="flex-1 sm:flex-none"
-          >
-            Save
-          </Button>
         </Field>
       </CardFooter>
     </Card>
