@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -21,8 +22,28 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSet,
+  FieldContent,
 } from "@/components/ui/field"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/radio-group"
+
 import { Input } from "@/components/ui/input"
+
+const gender = [
+  { label: "Male", value: "male" },
+  { label: "Female", value: "female" },
+  { label: "Other", value: "other" },
+] as const
 
 const formSchema = z.object({
   children: z
@@ -31,6 +52,9 @@ const formSchema = z.object({
         name: z.string("child name is required"),
         birthday: z.coerce.date(),
         ssn: z.string().regex(/^\d{3}-\d{2}-\d{4}$/),
+        gender: z.string().min(1),
+        race: z.string(),
+        living: z.boolean(),
       })
     )
 })
@@ -99,6 +123,7 @@ export default function Children() {
                           <FieldError errors={[fieldState.error]} />
                         )}
                       </Field>
+                      
                       <Controller
                         name={`children.${index}.birthday`}
                         control={form.control}
@@ -149,7 +174,7 @@ export default function Children() {
                               <FieldLabel htmlFor={`form-rhf-input-ssn-${index}`}>
                                 Social Security Number
                               </FieldLabel>
-                              <Input {...field} 
+                              <Input {...field}
                                 placeholder="XXX-XX-XXXX"
                                 aria-invalid={fieldState.invalid}
                               />
@@ -160,6 +185,86 @@ export default function Children() {
                           )
                         }}
                       />
+                      <Controller
+                        name={`children.${index}.gender`}
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                          <Field
+                            orientation="responsive"
+                            data-invalid={fieldState.invalid}
+                          >
+                            <FieldContent>
+                              <FieldLabel htmlFor="form-rhf-select-gender">
+                                Gender
+                              </FieldLabel>
+                              {fieldState.invalid && (
+                                <FieldError errors={[fieldState.error]} />
+                              )}
+                            </FieldContent>
+                            <Select
+                              name={field.name}
+                              value={field.value}
+                              onValueChange={field.onChange}
+                            >
+                              <SelectTrigger
+                                id="form-rhf-select-gender"
+                                aria-invalid={fieldState.invalid}
+                                className="min-w-[120px]"
+                              >
+                                <SelectValue placeholder="Select" />
+                              </SelectTrigger>
+                              <SelectContent position="popper">
+                                <SelectSeparator />
+                                {gender.map((language) => (
+                                  <SelectItem key={language.value} value={language.value}>
+                                    {language.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </Field>
+                          
+                        )}
+                      />
+                      <Controller
+                        name={`children.${index}.race`}
+                        control={form.control}
+                        render={({ field, fieldState }) => {
+                          return (
+                            <Field>
+                              <FieldLabel htmlFor={`form-rhf-input-race-${index}`}>
+                                Race
+                              </FieldLabel>
+                              <Input {...field}
+                                placeholder="Race"
+                                aria-invalid={fieldState.invalid}
+                              />
+                            </Field>
+                          )
+                        }}
+                      />
+                      <Controller
+                        name={`children.${index}.living`}
+                        control={form.control}
+                        render={() => {
+                          //field is valid ssn format XXX-XX-XXXX
+                          return (
+                            <RadioGroup defaultValue="comfortable">
+                              <Label>Is the child living with you?</Label>
+                              <div className="flex items-center gap-3">
+                                <RadioGroupItem value="default" id="r1" />
+                                <Label htmlFor="r1">Yes</Label>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <RadioGroupItem value="comfortable" id="r2" />
+                                <Label htmlFor="r2">No</Label>
+                              </div>
+
+                            </RadioGroup>
+                          )
+                        }}
+                      />
+                      
                     </Card>
                   )}
                 />
@@ -169,10 +274,10 @@ export default function Children() {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => append({ name: "", birthday: undefined, ssn: "" })}
+              onClick={() => append({ name: "", birthday: undefined, ssn: "", gender: "",  race: "",  living: false })}
               disabled={fields.length >= 5}
             >
-              Add Name
+              Add Child
             </Button>
           </FieldSet>
 
