@@ -21,6 +21,7 @@ import Children from './sections/children'
 import CriminalHistory from './sections/criminal_history'
 import HousingHistory from './sections/housing_history'
 import Vehicles from './sections/vehicles'
+import Health from './sections/health'
 export default function Home() {
 
   const icon = null
@@ -53,6 +54,11 @@ export default function Home() {
       component: <HousingHistory />
     },
     {
+      title: "Health",
+      id: "health",
+      component: <Health />
+    },
+    {
       title: "Review",
       id: "review",
       component: <Demographics />
@@ -66,7 +72,16 @@ export default function Home() {
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Card className="w-full">
           <CardHeader className="text-center">
-            <CardTitle>Advocates for Homeless Families, Inc.</CardTitle>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Image
+                src="/afh-logo.png"
+                alt="Advocates for Homeless Families Logo"
+                width={48}
+                height={48}
+                className="flex-shrink-0"
+              />
+              <CardTitle className="text-xl sm:text-2xl">Advocates for Homeless Families, Inc.</CardTitle>
+            </div>
             <CardDescription>Transitional housing application</CardDescription>
           </CardHeader>
           <CardContent>
