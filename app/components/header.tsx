@@ -42,6 +42,7 @@ export default function Header({
             width={160}
             height={160}
             className="flex-shrink-0 rounded-full max-xl:w-40 max-xl:h-40 max-md:w-28 max-md:h-28"
+            priority
           />
         </Link>
         <div className="flex flex-col items-center">
