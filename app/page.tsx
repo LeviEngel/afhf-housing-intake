@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
 import React from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button"
-
-import { Check } from 'lucide-react'
-
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -14,101 +10,98 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import {
+  User,
+  House,
+  Car,
+  Heart,
+  Baby,
+  Gavel,
+  GraduationCap,
+  Briefcase,
+  ClipboardCheck,
+} from "lucide-react";
 
-import Demographics from './sections/demographics'
-import Children from './sections/children'
-import CriminalHistory from './sections/criminal_history'
-import HousingHistory from './sections/housing_history'
-import Vehicles from './sections/vehicles'
-import Health from './sections/health'
-import Education from './sections/education'
-import { EmploymentForm } from './sections/employment'
+import Header from "./components/header";
+import Demographics from "./sections/demographics";
+import Children from "./sections/children";
+import CriminalHistory from "./sections/criminal_history";
+import HousingHistory from "./sections/housing_history";
+import Vehicles from "./sections/vehicles";
+import Health from "./sections/health";
+import Education from "./sections/education";
+import { EmploymentForm } from "./sections/employment";
 export default function Home() {
-
-  const icon = null
-  const activeIcon = <Check />
-
   const sections = [
     {
       title: "Demographics",
-      id: "demographics",
-      component: <Demographics />
+      id: 1,
+      icon: User,
+      component: <Demographics />,
     },
     {
       title: "Vehicles",
-      id: "vehicles",
-      component: <Vehicles />
+      id: 2,
+      icon: Car,
+      component: <Vehicles />,
     },
     {
       title: "Children",
-      id: "children",
-      component: <Children />
+      id: 3,
+      icon: Baby,
+      component: <Children />,
     },
     {
       title: "Criminal History",
-      id: "criminalHistory",
-      component: <CriminalHistory />
+      id: 4,
+      icon: Gavel,
+      component: <CriminalHistory />,
     },
     {
       title: "Housing History",
-      id: "housingHistory",
-      component: <HousingHistory />
+      id: 5,
+      icon: House,
+      component: <HousingHistory />,
     },
     {
       title: "Health",
-      id: "health",
-      component: <Health />
+      id: 6,
+      icon: Heart,
+      component: <Health />,
     },
     {
       title: "Education",
-      id: "education",
-      component: <Education />
+      id: 7,
+      icon: GraduationCap,
+      component: <Education />,
     },
     {
       title: "Employment",
-      id: "employment",
-      component: <EmploymentForm />
+      id: 8,
+      icon: Briefcase,
+      component: <EmploymentForm />,
     },
     {
       title: "Review",
-      id: "review",
-      component: <Demographics />
-    }
-  ]
+      id: 9,
+      icon: ClipboardCheck,
+      component: <Demographics />,
+    },
+  ];
 
-  const [activeSection, setActiveSection] = React.useState(sections[0].id)
+  const [activeSection, setActiveSection] = React.useState(sections[0].id);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="flex flex-col items-stretch min-h-screen w-full items-center justify-between bg-[var(--color-background)] dark:bg-black ">
+      <Header
+        sections={sections}
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
+      <div className="flex w-full flex-row items-center justify-between">
         <Card className="w-full">
-          <CardHeader className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <Image
-                src="/afh-logo.png"
-                alt="Advocates for Homeless Families Logo"
-                width={48}
-                height={48}
-                className="flex-shrink-0"
-              />
-              <CardTitle className="text-xl sm:text-2xl">Advocates for Homeless Families, Inc.</CardTitle>
-            </div>
-            <CardDescription>Transitional housing application</CardDescription>
-          </CardHeader>
           <CardContent>
-            <div className="flex justify-center p-5 space-x-6">
-
-              {sections.map((sec) => (
-                <div key={sec.id} className="flex flex-col items-center space-y-2">
-                  <Button onClick={() => setActiveSection(sec.id)} className={`w-10 h-10 rounded-full ${activeSection === sec.id ? "bg-green-100" : "bg-none"}`} variant="outline">
-                    {activeSection === sec.id ? activeIcon : icon}
-                  </Button>
-                  <b className="text-xs text-center">{sec.title}</b>
-                </div>
-              ))}
-
-            </div>
             <div className="flex justify-center p-5">
               {sections.find((sec) => sec.id === activeSection)?.component}
             </div>
@@ -118,7 +111,7 @@ export default function Home() {
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
