@@ -37,7 +37,7 @@ export default function Header({
           className="rounded-full overflow-hidden absolute left-0 top-0 px-[21px] max-2xl:static max-2xl:self-center"
         >
           <Image
-            src="/afh-logo.png"
+            src="./afhf-logo.png"
             alt="Advocates for Homeless Families Logo"
             width={188}
             height={186}

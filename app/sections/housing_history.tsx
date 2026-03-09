@@ -60,21 +60,24 @@ const formSchema = z.object({
     }),
   residenceDuration: z
     .string(),
-  payRent: z,
+  payRent: z
+    .boolean(),
   howMuchRent: z
     .string(),
   livingBefore: z
     .string(),
   howLongLiveBefore: z
     .string(),
-  wereYouRenting: z,
+  wereYouRenting: z
+    .boolean(),
   howMuchRentOld: z
     .string(),
-  beenEvicted: z,
+  beenEvicted: z
+   .boolean(),
   whyEvicted: z
     .string(),
   anyUtilities: z
-    .string(),
+    .boolean(),
   electricCompany: z
     .string(),
   gasCompany: z
@@ -95,10 +98,12 @@ const formSchema = z.object({
     .string(),
   waterPrice: z
     .string(),
-  receivedAssistance: z,
+  receivedAssistance: z
+    .boolean(),
   whatAssistance: z
     .string(),
-  experiencedHomeless: z,
+  experiencedHomeless: z
+    .boolean(),
   whatHomeless: z
     .string(),
 
@@ -116,9 +121,9 @@ export default function HousingHistory() {
       howLongLiveBefore: "",
       wereYouRenting: false,
       howMuchRentOld: "",
-      beenEvicted: "",
+      beenEvicted: false,
       whyEvicted: "",
-      anyUtilities: "",
+      anyUtilities: false,
       electricCompany: "",
       gasCompany: "",
       cableCompany: "",

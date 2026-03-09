@@ -40,7 +40,7 @@ const formSchema = z.object({
     .string()
     .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
     .optional(),
-  dateOfBirth: z.date({ required_error: "Date of birth is required" }).nullable().optional(),
+  dateOfBirth: z.date({ error: "Date of birth is required" }).nullable().optional(),
   gender: z.enum(["male", "female", "other"]).optional(),
 
   race: z.string().optional(),
