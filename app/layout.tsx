@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Traditional Housing Application - Advocates for Homeless Families",
+  title: "Transitional Housing Application - Advocates for Homeless Families",
   description: "Apply for the two-year transitional housing program for families with custody of one or more children who are homeless, serving the Frederick, MD area.",
 };
 
